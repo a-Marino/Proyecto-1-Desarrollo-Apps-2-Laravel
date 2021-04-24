@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::group(['middleware' => 'auth'], function() {
+	Route::resource('usuarios', \App\Http\Controllers\userController::class);
+	Route::resource('vacunas', \App\Http\Controllers\vacunasController::class);
+	Route::resource('centros', \App\Http\Controllers\centrosController::class);
+	Route::resource('vacunatorios', \App\Http\Controllers\vacunatoriosController::class);
+	Route::resource('asignaciones', \App\Http\Controllers\asignacionesController::class);
+});
