@@ -1,10 +1,10 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        {{ __('Informacion del Perfil') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{ __('Actualiza la informacion de tu cuenta') }}
     </x-slot>
 
     <x-slot name="form">
@@ -28,7 +28,7 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->apelnom }}" class="rounded-full h-20 w-20 object-cover">
                 </div>
 
                 <!-- New Profile Photo Preview -->
@@ -54,9 +54,16 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('Name') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
-            <x-jet-input-error for="name" class="mt-2" />
+            <x-jet-label for="apelnom" value="{{ __('Nombre y Apellido') }}" />
+            <x-jet-input id="apelnom" type="text" class="mt-1 block w-full" wire:model.defer="state.apelnom" autocomplete="apelnom" />
+            <x-jet-input-error for="apelnom" class="mt-2" />
+        </div>
+
+        <!-- DNI -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="DNI" value="{{ __('DNI') }}" />
+            <x-jet-input id="DNI" type="number" class="mt-1 block w-full" wire:model.defer="state.DNI" />
+            <x-jet-input-error for="DNI" class="mt-2" />
         </div>
 
         <!-- Email -->
@@ -69,11 +76,11 @@
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Guardado.') }}
         </x-jet-action-message>
 
         <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Guardar') }}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>

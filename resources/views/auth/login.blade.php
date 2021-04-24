@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <img src="{{ asset('imagenes/vacunate-logo-lg-n.svg') }}" alt="" class="w-32">
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -16,8 +16,8 @@
             @csrf
 
             <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-label for="DNI" value="{{ __('DNI') }}" />
+                <x-jet-input id="DNI" class="block mt-1 w-full" type="number" name="DNI" :value="old('DNI')" required autofocus />
             </div>
 
             <div class="mt-4">
@@ -35,12 +35,12 @@
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('Olvidaste tu Contraseña?') }}
                     </a>
                 @endif
 
                 <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
+                    {{ __('Iniciar Sesión') }}
                 </x-jet-button>
             </div>
         </form>
