@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,12 +27,13 @@ class userController extends Controller
         return redirect()->route('usuarios.index');
     }
 
-    public function show(User $user) {
-    	return view('usuarios.show', compact('usuario'));
+    public function show(User $user, $id) {
+    	return view('usuarios.show', compact('user'));
     }
 
-    public function edit(User $user) {
-    	return view('usuarios.edit', compact('usuario'));
+    public function edit(User $user, $id) {
+        $user = User::findOrFail($id);
+    	return view('usuarios.edit', compact('user'));
     }
 
     public function update(UpdateUserRequest $request, User $user) {
