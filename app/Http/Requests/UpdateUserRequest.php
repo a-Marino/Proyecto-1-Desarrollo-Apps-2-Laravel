@@ -30,12 +30,10 @@ class UpdateUserRequest extends FormRequest
                 ],
                 'DNI' => [
                     'integer',
-                    'required',
                     'unique:users',
                 ],
                 'email' => [
-                    'required',
-                    'unique:users',
+                    'unique:users,email',
                 ],
                 'telefono' => [
                     'integer',
@@ -43,11 +41,8 @@ class UpdateUserRequest extends FormRequest
                 ],
                 'RUP' => [
                     'integer',
-                    'unique:users',
+                    'unique:users,RUP',
                     'nullable',
-                ],
-                'password' => [
-                    'required',
                 ],
             ];
     }

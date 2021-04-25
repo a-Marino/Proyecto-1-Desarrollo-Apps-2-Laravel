@@ -36,13 +36,16 @@ class userController extends Controller
     	return view('usuarios.edit', compact('user'));
     }
 
-    public function update(UpdateUserRequest $request, User $user) {
+    public function update(UpdateUserRequest $request, User $user, $id) {
+        $user = User::findOrFail($id);
     	$user->update($request->validated());
 
         return redirect()->route('usuarios.index');
     }
 
-    public function destroy(User $user) {
+    public function destroy(User $user, $id) {
+        $user = User::findOrFail($id);
+
     	$user->delete();
 
         return redirect()->route('usuarios.index');

@@ -39,7 +39,7 @@
             <tr>
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
-                  <div class="flex-shrink-0 h-10 w-10">
+                  <div class="flex-shrink-0 h-16 w-16">
                     @if ($user->role == 'enfermero')
                       <img src="{{ asset('imagenes/enfermeros.svg') }}" class="w-16">
                     @endif
@@ -73,6 +73,11 @@
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <a href="{{ route('usuarios.edit', $user->id) }}" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                <form class="inline-block" action="{{ route('usuarios.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Estas seguro?');">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2" value="Eliminar">
+                </form>
               </td>
             </tr>
             @endforeach
