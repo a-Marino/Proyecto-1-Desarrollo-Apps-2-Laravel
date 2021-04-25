@@ -11,6 +11,7 @@
                 </div>
 
                 <!-- Navigation Links -->
+                @if (auth()->user()->role == 'admin')
                     <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('usuarios.index') }}" :active="request()->routeIs('usuarios.*')">
                             <img src="{{ asset('imagenes/usuario.svg') }}" class="w-10">{{ __('ABM Usuarios') }}
@@ -36,7 +37,15 @@
                             <img src="{{ asset('imagenes/asignaciones.svg') }}" class="w-10">{{ __('Asignaciones') }}
                         </x-jet-nav-link>
                     </div>
+                @endif
 
+                @if (auth()->user()->role == 'enfermero')
+                    <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                            <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">{{ __('Registrar Vacunados') }}
+                        </x-jet-nav-link>
+                    </div>
+                @endif
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

@@ -25,6 +25,25 @@
             </div>
 
             <div class="mt-4">
+                <x-jet-label for="role" value="{{ __('Rol') }}" />
+                <select name="role" id="role" class="block mt-1 w-full">
+                    <option value="enfermero">Enfermero</option>
+                    <option value="admin">Administrador</option>
+                    <option value="gestion">Gestion</option>
+                </select>
+            </div>
+
+            <div class="mt-4" id="div_rup">
+                <x-jet-label for="RUP" value="{{ __('Rup') }}"/>
+                <x-jet-input id="RUP" class="block mt-1 w-full" type="number" name="RUP"/>
+            </div>
+
+            <div class="mt-4" id="div_telefono">
+                <x-jet-label for="telefono" value="{{ __('Telefono') }}"/>
+                <x-jet-input id="telefono" class="block mt-1 w-full" type="number" name="telefono"/>
+            </div>
+
+            <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>

@@ -22,9 +22,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function() {
-	Route::resource('usuarios', \App\Http\Controllers\userController::class);
-	Route::resource('vacunas', \App\Http\Controllers\vacunasController::class);
-	Route::resource('centros', \App\Http\Controllers\centrosController::class);
-	Route::resource('vacunatorios', \App\Http\Controllers\vacunatoriosController::class);
-	Route::resource('asignaciones', \App\Http\Controllers\asignacionesController::class);
+
+	Route::group(['middleware' => 'role:admin', 'prefix' => 'admin'], function() {
+		Route::resource('usuarios', \App\Http\Controllers\userController::class);
+		Route::resource('vacunas', \App\Http\Controllers\vacunasController::class);
+		Route::resource('centros', \App\Http\Controllers\centrosController::class);
+		Route::resource('vacunatorios', \App\Http\Controllers\vacunatoriosController::class);
+		Route::resource('asignaciones', \App\Http\Controllers\asignacionesController::class);
+	});
+
+	Route::group(['middleware' => 'role:enfermero', 'prefix' => 'enfermero'], function() {
+		Route::resource('registrarVacunados', \App\Http\Controllers\registrarVacunadosController::class);
+	});
+
 });
