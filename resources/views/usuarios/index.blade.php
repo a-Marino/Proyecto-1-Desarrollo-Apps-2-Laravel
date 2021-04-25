@@ -40,7 +40,15 @@
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="flex-shrink-0 h-10 w-10">
-                    <!-- imagen de rol -->
+                    @if ($user->role == 'enfermero')
+                      <img src="{{ asset('imagenes/enfermeros.svg') }}" class="w-16">
+                    @endif
+                    @if ($user->role == 'admin')
+                      <img src="{{ asset('imagenes/admin.svg') }}" class="w-16">
+                    @endif
+                    @if ($user->role == 'gestion')
+                      <img src="{{ asset('imagenes/gestor.svg') }}" class="w-16"> 
+                    @endif
                   </div>
                   <div class="ml-4">
                     <div class="text-sm font-medium text-gray-900">
