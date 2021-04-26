@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Vacuna;
+use App\Http\Requests\guardarVacunasRequest;
+use App\Http\Requests\editarVacunasRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class vacunasController extends Controller
 {
@@ -13,7 +17,9 @@ class vacunasController extends Controller
      */
     public function index()
     {
-        return view('vacunas.index');
+        $vacunas = Vacuna::all();
+
+        return view('vacunas.index', compact('vacunas'));
     }
 
     /**
@@ -23,7 +29,7 @@ class vacunasController extends Controller
      */
     public function create()
     {
-        //
+        return view('vacunas.create');
     }
 
     /**
@@ -32,9 +38,11 @@ class vacunasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(guardarVacunasRequest $request)
     {
-        //
+        Vacuna::create($request->validated());
+
+        return redirect()->route('vacunas.index');
     }
 
     /**
@@ -56,7 +64,9 @@ class vacunasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vacuna = Vacuna::findOrFail($id);
+
+        return view('vacunas.edit', compact('vacuna'));
     }
 
     /**
@@ -66,9 +76,12 @@ class vacunasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(editarVacunasRequest $request, $id)
     {
-        //
+        $vacuna = Vacuna::findOrFail($id);
+        $vacuna->update($request->validated());
+
+        return redirect()->route('vacunas.index');
     }
 
     /**
@@ -79,6 +92,10 @@ class vacunasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vacuna = Vacuna::findOrFail($id);
+
+        $vacuna->delete();
+
+        return redirect()->route('vacunas.index');
     }
 }

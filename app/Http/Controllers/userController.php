@@ -28,6 +28,7 @@ class userController extends Controller
     }
 
     public function show(User $user, $id) {
+        $user = User::findOrFail($id);
     	return view('usuarios.show', compact('user'));
     }
 

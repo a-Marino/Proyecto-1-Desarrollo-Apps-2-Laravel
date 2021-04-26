@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Asignaciones') }}
-        </h2>
+        <div class="flex items-center">
+            <img src="{{ asset('imagenes/asignaciones.svg') }}" class="w-10">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('ABM Centros') }}
+            </h2>
+        </div>
     </x-slot>
 
     <div class="py-12">

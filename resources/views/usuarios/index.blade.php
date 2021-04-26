@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('ABM Usuarios') }}
-        </h2>
+        <div class="flex items-center">
+            <img src="{{ asset('imagenes/usuario.svg') }}" class="w-10">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('ABM Usuario') }}
+            </h2>
+        </div>
     </x-slot>
 
 <div class="py-12">
@@ -22,6 +25,12 @@
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 DNI
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                RUP
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Telefono
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Estado
@@ -64,15 +73,29 @@
                 <div class="text-sm text-gray-900">{{ $user->DNI }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
+                @if ($user->role == 'enfermero')
+                  <div class="text-sm text-gray-900">{{ $user->RUP }}</div>
+                @else 
+                  <div class="text-sm text-gray-900">-</div>
+                @endif
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                @if ($user->role == 'enfermero')
+                  <div class="text-sm text-gray-900">{{ $user->telefono }}</div>
+                @else 
+                  <div class="text-sm text-gray-900">-</div>
+                @endif
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                   Active
                 </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                Admin
+                {{ $user->role }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="{{ route('usuarios.edit', $user->id) }}" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                <a href="{{ route('usuarios.edit', $user->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Editar</a>
                 <form class="inline-block" action="{{ route('usuarios.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Estas seguro?');">
                   <input type="hidden" name="_method" value="DELETE">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
