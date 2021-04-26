@@ -12,7 +12,7 @@ class Vacunatorio extends Model
 
 
     public function centros(){
-        return $this->belongsToMany('\App\Models\Centro');
+        return $this->belongsTo('\App\Models\Centro', 'id');
     }
 
     protected $fillable =[

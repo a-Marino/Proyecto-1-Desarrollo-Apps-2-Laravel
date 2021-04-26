@@ -11,6 +11,6 @@ class Centro extends Model
     protected $table ="centros";
 
     public function vacunatorios(){
-        return $this->belongsToMany('\App\Models\Vacunatorio');
+        return $this->hasMany('\App\Models\Vacunatorio', 'centro_id');
     }
 }

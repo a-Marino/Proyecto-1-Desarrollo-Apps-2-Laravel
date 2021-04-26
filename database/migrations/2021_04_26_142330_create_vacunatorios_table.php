@@ -18,7 +18,7 @@ class CreateVacunatoriosTable extends Migration
             $table->unsignedBigInteger('centro_id');
             $table->string('medico');
             $table->string('horario');
-            $table->integer('telefono');
+            $table->bigInteger('telefono');
             $table->integer('disable')->nullable();
             $table->timestamps();
 
