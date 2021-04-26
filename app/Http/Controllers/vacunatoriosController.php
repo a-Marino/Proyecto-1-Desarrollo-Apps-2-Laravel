@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Vacunatorio;
+use App\Models\Centro;
+use App\Http\Requests\guardarVacunatoriosRequest;
+use App\Http\Requests\editarVacunatoriosRequest;
+
 
 class vacunatoriosController extends Controller
 {
@@ -13,7 +18,9 @@ class vacunatoriosController extends Controller
      */
     public function index()
     {
-        return view('vacunatorios.index');
+        $vacunatorios = Vacunatorio::all();
+
+        return view('vacunatorios.index', compact('vacunatorios'));
     }
 
     /**
@@ -23,7 +30,9 @@ class vacunatoriosController extends Controller
      */
     public function create()
     {
-        //
+        $centros = Centro::all();
+
+        return view('vacunatorios.create', compact('centros'));
     }
 
     /**
@@ -32,9 +41,11 @@ class vacunatoriosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(guardarVacunatoriosRequest  $request)
     {
-        //
+        Vacunatorio::create($request->validated());
+
+        return redirect()->route('vacunatorios.index');
     }
 
     /**
@@ -45,7 +56,7 @@ class vacunatoriosController extends Controller
      */
     public function show($id)
     {
-        //
+    
     }
 
     /**
@@ -56,7 +67,9 @@ class vacunatoriosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vacunatorio = Vacunatorio::findOrFail($id);
+
+        return view('vacunatorios.edit', compact('vacunatorio'));
     }
 
     /**
@@ -66,9 +79,12 @@ class vacunatoriosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(editarVacunatoriosRequest $request, $id)
     {
-        //
+        $vacunatorio = Vacunatorio::findOrFail($id);
+        $vacunatorio->update($request->validated());
+
+        return redirect()->route('vacunatorios.index');
     }
 
     /**
@@ -79,6 +95,10 @@ class vacunatoriosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vacunatorio = Vacunatorio::findOrFail($id);
+
+        $vacunatorio->delete();
+
+        return redirect()->route('vacunatorios.index');
     }
 }
