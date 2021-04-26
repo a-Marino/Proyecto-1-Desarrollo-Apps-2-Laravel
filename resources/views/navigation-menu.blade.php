@@ -18,22 +18,22 @@
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <x-jet-nav-link href="{{ route('vacunas.index') }}" :active="request()->routeIs('vacunas.*')">
                             <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">{{ __('ABM Vacunas') }}
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <x-jet-nav-link href="{{ route('vacunatorios.index') }}" :active="request()->routeIs('vacunatorios.*')">
                             <img src="{{ asset('imagenes/vacunatorio.svg') }}" class="w-10">{{ __('ABM Vacunatorios') }}
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <x-jet-nav-link href="{{ route('centros.index') }}" :active="request()->routeIs('centros.*')">
                             <img src="{{ asset('imagenes/centro.svg') }}" class="w-10">{{ __('ABM Centros') }}
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <x-jet-nav-link href="{{ route('asignaciones.index') }}" :active="request()->routeIs('asignaciones.*')">
                             <img src="{{ asset('imagenes/asignaciones.svg') }}" class="w-10">{{ __('Asignaciones') }}
                         </x-jet-nav-link>
                     </div>
@@ -41,7 +41,7 @@
 
                 @if (auth()->user()->role == 'enfermero')
                     <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <x-jet-nav-link href="{{ route('registra_vacunados') }}" :active="request()->routeIs('registra_vacunados.*')">
                             <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">{{ __('Registrar Vacunados') }}
                         </x-jet-nav-link>
                     </div>
