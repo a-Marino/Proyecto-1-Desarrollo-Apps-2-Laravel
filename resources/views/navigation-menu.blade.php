@@ -168,9 +168,33 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-jet-responsive-nav-link>
+            @if (auth()->user()->role == 'admin')
+                <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-responsive-nav-link href="{{ route('usuarios.index') }}" :active="request()->routeIs('usuarios.*')">
+                        <img src="{{ asset('imagenes/usuario.svg') }}" class="w-10">{{ __('ABM Usuarios') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-responsive-nav-link href="{{ route('vacunas.index') }}" :active="request()->routeIs('vacunas.*')">
+                        <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">{{ __('ABM Vacunas') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-responsive-nav-link href="{{ route('vacunatorios.index') }}" :active="request()->routeIs('vacunatorios.*')">
+                        <img src="{{ asset('imagenes/vacunatorio.svg') }}" class="w-10">{{ __('ABM Vacunatorios') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-responsive-nav-link href="{{ route('centros.index') }}" :active="request()->routeIs('centros.*')">
+                        <img src="{{ asset('imagenes/centro.svg') }}" class="w-10">{{ __('ABM Centros') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-responsive-nav-link href="{{ route('asignaciones.index') }}" :active="request()->routeIs('asignaciones.*')">
+                        <img src="{{ asset('imagenes/asignaciones.svg') }}" class="w-10">{{ __('Asignaciones') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
@@ -178,12 +202,12 @@
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="flex-shrink-0 mr-3">
-                        <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                        <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->apelnom }}" />
                     </div>
                 @endif
 
                 <div>
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->apelnom }}</div>
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
             </div>
@@ -191,7 +215,7 @@
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
+                    {{ __('Perfil') }}
                 </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -207,7 +231,7 @@
                     <x-jet-responsive-nav-link href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                     this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Cerrar Sesion') }}
                     </x-jet-responsive-nav-link>
                 </form>
 

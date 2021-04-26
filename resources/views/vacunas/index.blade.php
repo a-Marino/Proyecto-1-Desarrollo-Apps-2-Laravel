@@ -35,7 +35,16 @@
             @foreach ($vacunas as $vacuna)
             <tr>
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">{{$vacuna->nombre}}</div>
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">
+                  </div>
+                  <div class="ml-4">
+                    <div class="text-sm font-medium text-gray-900">
+                      {{ $vacuna->nombre }}
+                    </div>
+                  </div>
+                </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900">{{$vacuna->dosis}}</div>
