@@ -56,6 +56,8 @@ class vacunatoriosController extends Controller
      */
     public function show($id)
     {
+      
+
     
     }
 
@@ -68,8 +70,9 @@ class vacunatoriosController extends Controller
     public function edit($id)
     {
         $vacunatorio = Vacunatorio::findOrFail($id);
+        $centros= Centro::all();
 
-        return view('vacunatorios.edit', compact('vacunatorio'));
+        return view('vacunatorios.edit', compact('vacunatorio','centros'));
     }
 
     /**

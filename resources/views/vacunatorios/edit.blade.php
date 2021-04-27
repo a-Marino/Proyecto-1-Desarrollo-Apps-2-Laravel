@@ -12,10 +12,17 @@
                     @csrf
                     @method('put')
                     <div class="shadow overflow-hidden sm:rounded-md">
+                        <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="centro" class="block font-medium text-sm text-gray-700">Centro</label>
-                            <input type="text" name="centro" id="centro" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('centro', $vacunatorio->centro_id) }}" />
+                            <select name="centro_id" id="centro" class="form-input rounded-md shadow-sm mt-1 block w-full">
+                            @foreach($centros as $centro)
+                                @if($centro->id === $vacunatorio->centros->id)
+                                <option value="{{$centro->id}}" selected style="display:none">{{$vacunatorio->centros->nombre}}</option>
+                                @endif
+                                <option value="{{$centro->id}}">{{$centro->nombre}}</option>
+                            @endforeach
+                            </select>
                             @error('centro')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
