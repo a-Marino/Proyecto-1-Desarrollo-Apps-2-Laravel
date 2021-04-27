@@ -10,7 +10,7 @@
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <form method="post" action="{{ route('usuarios.store') }}">
                     @csrf
-                    <div class="shadow overflow-hidden sm:rounded-md">
+                    <div class="shadow overflow-hidden sm:rounded-md p-10">
                         <div>
                             <x-jet-label for="apelnom" value="{{ __('Nombre y Apellido') }}" />
                             <x-jet-input id="apelnom" class="block mt-1 w-full" type="text" name="apelnom" :value="old('apelnom')" required autofocus autocomplete="apelnom" />
@@ -55,7 +55,7 @@
                             <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
                         </div>
 
-                        <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                        <div class="flex items-center justify-end px-4 py-3 bg-gray-100 text-right sm:px-6">
                             <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                 Crear 
                             </button>
