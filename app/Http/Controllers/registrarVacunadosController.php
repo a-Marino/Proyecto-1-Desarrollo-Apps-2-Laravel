@@ -13,7 +13,7 @@ class registrarVacunadosController extends Controller
      */
     public function index()
     {
-        return view('registrar_vacunados.index');
+        return view('registrarVacunados.index');
     }
 
     /**
