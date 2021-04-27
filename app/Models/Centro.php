@@ -13,4 +13,10 @@ class Centro extends Model
     public function vacunatorios(){
         return $this->hasMany('\App\Models\Vacunatorio', 'id');
     }
+
+    protected $fillable = [
+        'id',
+        'nombre',
+        'localidad',
+    ];
 }
