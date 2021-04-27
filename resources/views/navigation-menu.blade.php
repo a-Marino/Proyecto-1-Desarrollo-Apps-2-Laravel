@@ -41,7 +41,7 @@
 
                 @if (auth()->user()->role == 'enfermero')
                     <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('registra_vacunados') }}" :active="request()->routeIs('registra_vacunados.*')">
+                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('registrar_vacunados.*')">
                             <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">{{ __('Registrar Vacunados') }}
                         </x-jet-nav-link>
                     </div>

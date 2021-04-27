@@ -38,7 +38,10 @@ class editarVacunatoriosRequest extends FormRequest
              ],
              'telefono'=>[
                  'integer',
-             ]
+             ],
+             'disable'=> [
+                'boolean',
+             ],
         ];
     }
 }

@@ -17,7 +17,7 @@ class CreateVacunasTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('dosis');
-            $table->integer('disable')->nullable();
+            $table->boolean('disable')->default(false);
             $table->timestamps();
         });
     }

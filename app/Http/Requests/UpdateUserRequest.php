@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -30,10 +31,9 @@ class UpdateUserRequest extends FormRequest
                 ],
                 'DNI' => [
                     'integer',
-                    'unique:users',
                 ],
                 'email' => [
-                    'unique:users,email',
+                    'email',
                 ],
                 'telefono' => [
                     'integer',
@@ -41,9 +41,11 @@ class UpdateUserRequest extends FormRequest
                 ],
                 'RUP' => [
                     'integer',
-                    'unique:users,RUP',
                     'nullable',
                 ],
+                'disable' => [
+                    'boolean',
+                ]
             ];
     }
 }

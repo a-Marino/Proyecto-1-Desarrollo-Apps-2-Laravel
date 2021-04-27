@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
@@ -21,8 +22,27 @@ class userController extends Controller
     	return view('usuarios.create');
     }
 
-    public function store(StoreUserRequest $request) {
-    	User::create($request->validated());
+    public function store(Request $request) {
+    	
+        $this->validate($request, [
+            'apelnom' => 'required',
+            'DNI' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+            'RUP' => 'nullable',
+            'telefono' => 'nullable',
+            'password' => 'required',
+        ]);
+
+        $user = new User();
+        $user->apelnom = $request->input('apelnom');
+        $user->DNI = $request->input('DNI');
+        $user->email = $request->input('email');
+        $user->RUP = $request->input('RUP');
+        $user->role = $request->input('role');
+        $user->telefono = $request->input('telefono');
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
 
         return redirect()->route('usuarios.index');
     }
@@ -37,7 +57,7 @@ class userController extends Controller
     	return view('usuarios.edit', compact('user'));
     }
 
-    public function update(UpdateUserRequest $request, User $user, $id) {
+    public function update(UpdateUserRequest $request, $id) {
         $user = User::findOrFail($id);
     	$user->update($request->validated());
 

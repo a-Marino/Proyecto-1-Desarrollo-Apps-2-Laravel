@@ -29,7 +29,10 @@ class editarVacunasRequest extends FormRequest
             ],
             'dosis' => [
                 'integer',
-            ]
+            ],
+            'disable' => [
+                'boolean',
+            ],
         ];
     }
 }

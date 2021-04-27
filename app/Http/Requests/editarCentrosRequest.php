@@ -25,16 +25,16 @@ class editarCentrosRequest extends FormRequest
     {
         return [
             'id' => [
-                'required',
                 'numeric',
             ],
             'nombre' => [
-                'required',
                 'string',
             ],
             'localidad' => [
-                'required',
                 'string',
+            ],
+            'disable' => [
+                'boolean',
             ]
         ];
     }

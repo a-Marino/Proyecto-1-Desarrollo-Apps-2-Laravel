@@ -17,7 +17,7 @@ class CreateCentrosTable extends Migration
             $table->id('id');
             $table->string('nombre');
             $table->string('localidad');
-            $table->integer('disable')->nullable();;
+            $table->boolean('disable')->default(false);
             $table->timestamps();
         });
     }

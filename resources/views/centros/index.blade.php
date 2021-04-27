@@ -29,6 +29,9 @@
               <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Código
               </th>
+              <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Estado
+              </th>
               <th scope="col" class="relative px-6 py-3">
                 <span class="sr-only">Editar</span>
               </th>
@@ -57,6 +60,14 @@
 
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900 text-center">{{$centro->id}}</div>
+              </td>
+
+              <td class="px-6 py-4 whitespace-nowrap text-center">
+                  @if($centro->disable == false) 
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 text-center">Habilitado</span>
+                  @else
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 text-center">Deshabilitado</span>
+                  @endif
               </td>
 
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

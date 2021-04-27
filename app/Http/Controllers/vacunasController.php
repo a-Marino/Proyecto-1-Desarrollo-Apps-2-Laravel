@@ -98,4 +98,5 @@ class vacunasController extends Controller
 
         return redirect()->route('vacunas.index');
     }
+
 }

@@ -19,7 +19,7 @@ class CreateVacunatoriosTable extends Migration
             $table->string('medico');
             $table->string('horario');
             $table->bigInteger('telefono');
-            $table->integer('disable')->nullable();
+            $table->boolean('disable')->default(false);
             $table->timestamps();
 
              //claves foraneas

@@ -18,5 +18,6 @@ class Centro extends Model
         'id',
         'nombre',
         'localidad',
+        'disable',
     ];
 }
