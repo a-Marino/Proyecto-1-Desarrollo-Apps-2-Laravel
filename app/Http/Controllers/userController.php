@@ -25,13 +25,13 @@ class userController extends Controller
     public function store(Request $request) {
     	
         $this->validate($request, [
-            'apelnom' => 'required',
-            'DNI' => 'required',
-            'email' => 'required',
+            'apelnom' => 'required|string',
+            'DNI' => 'required|integer|unique:users',
+            'email' => 'required|email|unique:users',
             'role' => 'required',
-            'RUP' => 'nullable',
-            'telefono' => 'nullable',
-            'password' => 'required',
+            'RUP' => 'nullable|integer|unique:users',
+            'telefono' => 'nullable|integer',
+            'password' => 'required|string',
         ]);
 
         $user = new User();
@@ -59,8 +59,8 @@ class userController extends Controller
 
     public function update(UpdateUserRequest $request, $id) {
         $user = User::findOrFail($id);
-    	$user->update($request->validated());
 
+        $user->update($request->validated());
         return redirect()->route('usuarios.index');
     }
 
