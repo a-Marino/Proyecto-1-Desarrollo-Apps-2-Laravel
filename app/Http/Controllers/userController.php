@@ -64,10 +64,30 @@ class userController extends Controller
     	return view('usuarios.edit', compact('user'));
     }
 
-    public function update(UpdateUserRequest $request, $id) {
-        $user = User::findOrFail($id);
+    public function update(Request $request, $id) {
 
-        $user->update($request->validated());
+        $this->validate($request, [
+            'apelnom' => 'string',
+            'DNI' => 'integer',
+            'email' => 'email',
+            'password' => 'string',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->apelnom = $request->input('apelnom');
+        $user->DNI = $request->input('DNI');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+        $userId = $user->id;
+
+        if ($user->role == 'enfermero') {
+            $enfermero = Enfermero::where('user_id',$userId)->firstOrFail();
+            $enfermero->RUP = $request->input('RUP');
+            $enfermero->telefono = $request->input('telefono');
+            $enfermero->save();
+        }
+        
         return redirect()->route('usuarios.index');
     }
 
