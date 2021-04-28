@@ -74,14 +74,18 @@
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 @if ($user->role == 'enfermero')
-                  <div class="text-sm text-gray-900">{{ $user->RUP }}</div>
+                  @foreach ($enfermeros as $enfermero)
+                    <div class="text-sm text-gray-900">@if($enfermero->user_id == $user->id){{$enfermero->RUP}}@endif</div>
+                  @endforeach
                 @else 
                   <div class="text-sm text-gray-900">-</div>
                 @endif
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 @if ($user->role == 'enfermero')
-                  <div class="text-sm text-gray-900">{{ $user->telefono }}</div>
+                  @foreach ($enfermeros as $enfermero)
+                    <div class="text-sm text-gray-900">@if($enfermero->user_id == $user->id){{$enfermero->telefono}}@endif</div>
+                  @endforeach
                 @else 
                   <div class="text-sm text-gray-900">-</div>
                 @endif

@@ -64,4 +64,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function enfermeros() {
+        return $this->hasMany('\App\Models\Enfermero', 'id');
+    }
+
 }

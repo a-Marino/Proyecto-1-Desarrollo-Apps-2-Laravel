@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Models\Enfermero;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Hash;
@@ -14,8 +15,9 @@ class userController extends Controller
 {
     public function index() {
     	$users = User::all();
+        $enfermeros = Enfermero::all();
 
-    	return view('usuarios.index', compact('users'));
+    	return view('usuarios.index', compact('users', 'enfermeros'));
     }
 
     public function create() {
@@ -29,8 +31,6 @@ class userController extends Controller
             'DNI' => 'required|integer|unique:users',
             'email' => 'required|email|unique:users',
             'role' => 'required',
-            'RUP' => 'nullable|integer|unique:users',
-            'telefono' => 'nullable|integer',
             'password' => 'required|string',
         ]);
 
@@ -38,11 +38,18 @@ class userController extends Controller
         $user->apelnom = $request->input('apelnom');
         $user->DNI = $request->input('DNI');
         $user->email = $request->input('email');
-        $user->RUP = $request->input('RUP');
         $user->role = $request->input('role');
-        $user->telefono = $request->input('telefono');
         $user->password = Hash::make($request->input('password'));
         $user->save();
+        $ultimoId = $user->id;
+
+        if ($user->role == 'enfermero') {
+            $enfermero = new Enfermero();
+            $enfermero->user_id = $ultimoId;
+            $enfermero->RUP = $request->input('RUP');
+            $enfermero->telefono = $request->input('telefono');
+            $enfermero->save();
+        }
 
         return redirect()->route('usuarios.index');
     }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Enfermero;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -19,7 +20,6 @@ class UserTableSeeder extends Seeder
         $usuario->DNI=100;
         $usuario->email='admin@email.com';
         $usuario->role='admin';
-        $usuario->telefono=2926400100;
         $usuario->password = bcrypt('100');
         $usuario->save();
 
@@ -28,27 +28,32 @@ class UserTableSeeder extends Seeder
         $usuario->DNI=101;
         $usuario->email='enfermero1@email.com';
         $usuario->role='enfermero';
-        $usuario->RUP=101101;
-        $usuario->telefono=2926400101;
         $usuario->password = bcrypt('101');
         $usuario->save();
+        $enfermero = new Enfermero();
+        $enfermero->user_id=2;
+        $enfermero->RUP=100200;
+        $enfermero->telefono=2926100101;
+        $enfermero->save();
 
         $usuario = new User();
         $usuario->apelnom='Enfermero 2';
         $usuario->DNI=102;
         $usuario->email='enfermero2@email.com';
         $usuario->role='enfermero';
-        $usuario->RUP=102102;
-        $usuario->telefono=2926400102;
         $usuario->password = bcrypt('102');
         $usuario->save();
+        $enfermero = new Enfermero();
+        $enfermero->user_id=3;
+        $enfermero->RUP=100201;
+        $enfermero->telefono=2926100102;
+        $enfermero->save();
 
         $usuario = new User();
-        $usuario->apelnom='Gestión 1';
+        $usuario->apelnom='Gestion 1';
         $usuario->DNI=103;
         $usuario->email='gestion@email.com';
         $usuario->role='gestion';
-        $usuario->telefono=2926400103;
         $usuario->password = bcrypt('103');
         $usuario->save();
     }
