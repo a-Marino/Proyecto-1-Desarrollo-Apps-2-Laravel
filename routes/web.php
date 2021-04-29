@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/error-rol', function() {
-	return view('errores.errorRol');
+	return view('errors.errorRol');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

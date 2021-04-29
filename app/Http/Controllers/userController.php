@@ -25,7 +25,7 @@ class userController extends Controller
     }
 
     public function store(Request $request) {
-    	
+
         $this->validate($request, [
             'apelnom' => 'required|string',
             'DNI' => 'required|integer|unique:users',
@@ -87,7 +87,7 @@ class userController extends Controller
             $enfermero->telefono = $request->input('telefono');
             $enfermero->save();
         }
-        
+
         return redirect()->route('usuarios.index');
     }
 
