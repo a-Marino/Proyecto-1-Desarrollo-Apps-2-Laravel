@@ -27,8 +27,6 @@ class User extends Authenticatable
         'apelnom',
         'email',
         'DNI',
-        'RUP',
-        'telefono',
         'role',
         'password',
         'disable',
