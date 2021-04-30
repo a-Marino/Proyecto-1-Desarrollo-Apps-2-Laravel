@@ -21,10 +21,16 @@ class userController extends Controller
     }
 
     public function create() {
-    	return view('usuarios.create');
+        if (auth()->user()->role == 'admin') {
+    	   return view('usuarios.create');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     public function store(Request $request) {
+
+        if (auth()->user()->role == 'admin') {
 
         $this->validate($request, [
             'apelnom' => 'required|string',
@@ -52,19 +58,22 @@ class userController extends Controller
         }
 
         return redirect()->route('usuarios.index');
-    }
-
-    public function show(User $user, $id) {
-        $user = User::findOrFail($id);
-    	return view('usuarios.show', compact('user'));
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     public function edit(User $user, $id) {
-        $user = User::findOrFail($id);
-    	return view('usuarios.edit', compact('user'));
+        if (auth()->user()->role == 'admin') {
+            $user = User::findOrFail($id);
+    	   return view('usuarios.edit', compact('user'));
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     public function update(Request $request, $id) {
+        if (auth()->user()->role == 'admin') {
 
         $this->validate($request, [
             'apelnom' => 'string',
@@ -89,13 +98,20 @@ class userController extends Controller
         }
 
         return redirect()->route('usuarios.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     public function destroy(User $user, $id) {
-        $user = User::findOrFail($id);
+        if (auth()->user()->role == 'admin') {
+            $user = User::findOrFail($id);
 
-    	$user->delete();
+    	   $user->delete();
 
-        return redirect()->route('usuarios.index');
+            return redirect()->route('usuarios.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 }

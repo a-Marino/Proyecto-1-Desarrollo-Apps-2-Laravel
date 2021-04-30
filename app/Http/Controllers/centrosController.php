@@ -28,7 +28,11 @@ class centrosController extends Controller
      */
     public function create()
     {
-        return view('centros.create');
+        if (auth()->user()->role == 'admin') {
+            return view('centros.create');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -39,20 +43,13 @@ class centrosController extends Controller
      */
     public function store(guardarCentrosRequest $request)
     {
-        Centro::create($request->validated());
+        if (auth()->user()->role == 'admin') {
+            Centro::create($request->validated());
 
-        return redirect()->route('centros.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+            return redirect()->route('centros.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -63,9 +60,13 @@ class centrosController extends Controller
      */
     public function edit($id)
     {
-        $centro = centro::findOrFail($id);
+        if (auth()->user()->role == 'admin') {
+            $centro = centro::findOrFail($id);
 
-        return view('centros.edit', compact('centro'));
+            return view('centros.edit', compact('centro'));
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -77,10 +78,14 @@ class centrosController extends Controller
      */
     public function update(editarCentrosRequest $request, $id)
     {
-        $centro = Centro::findOrFail($id);
-        $centro->update($request->validated());
+        if (auth()->user()->role == 'admin') {
+            $centro = Centro::findOrFail($id);
+            $centro->update($request->validated());
 
-        return redirect()->route('centros.index');
+            return redirect()->route('centros.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -91,10 +96,14 @@ class centrosController extends Controller
      */
     public function destroy($id)
     {
-        $centro = centro::findOrFail($id);
+        if (auth()->user()->role == 'admin') {
+            $centro = centro::findOrFail($id);
 
-        $centro->delete();
+            $centro->delete();
 
-        return redirect()->route('centros.index');
+            return redirect()->route('centros.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 }

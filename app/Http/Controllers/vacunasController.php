@@ -7,6 +7,7 @@ use App\Models\Vacuna;
 use App\Http\Requests\guardarVacunasRequest;
 use App\Http\Requests\editarVacunasRequest;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class vacunasController extends Controller
 {
@@ -29,7 +30,11 @@ class vacunasController extends Controller
      */
     public function create()
     {
-        return view('vacunas.create');
+        if (auth()->user()->role == 'admin') {
+            return view('vacunas.create');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -40,20 +45,13 @@ class vacunasController extends Controller
      */
     public function store(guardarVacunasRequest $request)
     {
-        Vacuna::create($request->validated());
+        if (auth()->user()->role == 'admin') {
+            Vacuna::create($request->validated());
 
-        return redirect()->route('vacunas.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+            return redirect()->route('vacunas.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -64,9 +62,13 @@ class vacunasController extends Controller
      */
     public function edit($id)
     {
-        $vacuna = Vacuna::findOrFail($id);
+        if (auth()->user()->role == 'admin') {
+            $vacuna = Vacuna::findOrFail($id);
 
-        return view('vacunas.edit', compact('vacuna'));
+            return view('vacunas.edit', compact('vacuna'));
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -78,10 +80,14 @@ class vacunasController extends Controller
      */
     public function update(editarVacunasRequest $request, $id)
     {
-        $vacuna = Vacuna::findOrFail($id);
-        $vacuna->update($request->validated());
+        if (auth()->user()->role == 'admin') {
+            $vacuna = Vacuna::findOrFail($id);
+            $vacuna->update($request->validated());
 
-        return redirect()->route('vacunas.index');
+            return redirect()->route('vacunas.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -91,12 +97,16 @@ class vacunasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $vacuna = Vacuna::findOrFail($id);
+    {   
+        if (auth()->user()->role == 'admin') {
+            $vacuna = Vacuna::findOrFail($id);
 
-        $vacuna->delete();
+            $vacuna->delete();
 
-        return redirect()->route('vacunas.index');
+            return redirect()->route('vacunas.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
 }

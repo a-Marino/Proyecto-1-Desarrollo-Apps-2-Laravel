@@ -3,16 +3,22 @@
         <div class="flex items-center">
             <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+              @if( auth()->user()->role == 'admin')
                 {{ __('ABM Vacunas') }}
+              @else 
+                {{ __('Lista de Vacunas')}}
+              @endif
             </h2>
         </div>
     </x-slot>
 
     <div class="py-12">
   <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+  @if( auth()->user()->role == 'admin')
   <div class="block mb-8">
     <a href="{{ route('vacunas.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Crear Vacuna</a>
   </div>
+  @endif
   <div class="flex flex-col">
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -60,12 +66,14 @@
                   @endif
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                @if(auth()->user()->role == 'admin')
                 <a href="{{ route('vacunas.edit', $vacuna->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Editar</a>
                 <form class="inline-block" action="{{ route('vacunas.destroy', $vacuna->id) }}" method="POST" onsubmit="return confirm('Estas seguro?');">
                   <input type="hidden" name="_method" value="DELETE">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2" value="Eliminar">
                 </form>
+                @endif
               </td>
             </tr>
             @endforeach

@@ -27,7 +27,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware' => 'auth'], function() {
 
-	Route::group(['middleware' => 'role:admin', 'prefix' => 'admin'], function() {
+	Route::group(['middleware' => 'role:admin|gestion'], function() {
 		Route::resource('usuarios', \App\Http\Controllers\userController::class);
 		Route::resource('vacunas', \App\Http\Controllers\vacunasController::class);
 		Route::resource('centros', \App\Http\Controllers\centrosController::class);
@@ -35,8 +35,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::resource('asignaciones', \App\Http\Controllers\asignacionesController::class);
 	});
 
-	Route::group(['middleware' => 'role:enfermero', 'prefix' => 'enfermero'], function() {
+	Route::group(['middleware' => 'role:enfermero'], function() {
 		Route::resource('registrarVacunados', \App\Http\Controllers\registrarVacunadosController::class);
 	});
-
 });

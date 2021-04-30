@@ -30,9 +30,13 @@ class vacunatoriosController extends Controller
      */
     public function create()
     {
-        $centros = Centro::all();
+        if (auth()->user()->role == 'admin') {
+            $centros = Centro::all();
 
-        return view('vacunatorios.create', compact('centros'));
+            return view('vacunatorios.create', compact('centros'));
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -43,22 +47,13 @@ class vacunatoriosController extends Controller
      */
     public function store(guardarVacunatoriosRequest  $request)
     {
-        Vacunatorio::create($request->validated());
+        if (auth()->user()->role == 'admin') {
+            Vacunatorio::create($request->validated());
 
-        return redirect()->route('vacunatorios.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-      
-
-    
+            return redirect()->route('vacunatorios.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -69,10 +64,14 @@ class vacunatoriosController extends Controller
      */
     public function edit($id)
     {
-        $vacunatorio = Vacunatorio::findOrFail($id);
-        $centros= Centro::all();
+        if (auth()->user()->role == 'admin') {
+            $vacunatorio = Vacunatorio::findOrFail($id);
+            $centros= Centro::all();
 
-        return view('vacunatorios.edit', compact('vacunatorio','centros'));
+            return view('vacunatorios.edit', compact('vacunatorio','centros'));
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -84,10 +83,14 @@ class vacunatoriosController extends Controller
      */
     public function update(editarVacunatoriosRequest $request, $id)
     {
-        $vacunatorio = Vacunatorio::findOrFail($id);
-        $vacunatorio->update($request->validated());
+        if (auth()->user()->role == 'admin') {
+            $vacunatorio = Vacunatorio::findOrFail($id);
+            $vacunatorio->update($request->validated());
 
-        return redirect()->route('vacunatorios.index');
+            return redirect()->route('vacunatorios.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -98,10 +101,14 @@ class vacunatoriosController extends Controller
      */
     public function destroy($id)
     {
-        $vacunatorio = Vacunatorio::findOrFail($id);
+        if (auth()->user()->role == 'admin') {
+            $vacunatorio = Vacunatorio::findOrFail($id);
 
-        $vacunatorio->delete();
+            $vacunatorio->delete();
 
-        return redirect()->route('vacunatorios.index');
+            return redirect()->route('vacunatorios.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 }
