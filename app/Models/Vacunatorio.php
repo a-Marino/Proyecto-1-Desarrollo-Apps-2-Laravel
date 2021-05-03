@@ -17,6 +17,7 @@ class Vacunatorio extends Model
 
     protected $fillable =[
         'centro_id',
+        'nombre',
         'medico',
         'horario',
         'telefono',

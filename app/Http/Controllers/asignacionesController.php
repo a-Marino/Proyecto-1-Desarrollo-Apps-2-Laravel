@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Vacunatorio;
+use App\Models\User;
+use App\Models\Enfermero;
+use App\Models\Asignacion;
+use App\Http\Requests\guardarAsignacionRequest;
+use App\Http\Requests\editarAsignacionRequest;
 
 class asignacionesController extends Controller
 {
@@ -13,7 +19,11 @@ class asignacionesController extends Controller
      */
     public function index()
     {
-        return view('asignaciones.index');
+        $users = User::all();
+        $vacunatorios = Vacunatorio::all();
+        $asignaciones = Asignacion::all();
+
+        return view('asignaciones.index', compact('users', 'vacunatorios', 'asignaciones'));
     }
 
     /**
@@ -23,7 +33,13 @@ class asignacionesController extends Controller
      */
     public function create()
     {
-        //
+        if (auth()->user()->role == 'admin') {
+            $users = User::all();
+            $vacunatorios = Vacunatorio::all();
+            return view('asignaciones.create', compact('users', 'vacunatorios'));
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -34,19 +50,19 @@ class asignacionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (auth()->user()->role == 'admin') {
+            $asignacion = New Asignacion();
+            $asignacion->user_id = $request->input('user_id');
+            $asignacion->vacunatorio_id = $request->input('vacunatorio_id');
+            $asignacion->save();
+
+            return redirect()->route('asignaciones.index');
+        } else {
+            return redirect('/error-rol');
+        }
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -56,7 +72,15 @@ class asignacionesController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (auth()->user()->role == 'admin') {
+            $vacunatorios = Vacunatorio::all();
+            $users = User::all();
+            $asignacion = Asignacion::findOrFail($id);
+
+            return view('asignaciones.edit', compact('vacunatorios','users', 'asignacion'));
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -68,7 +92,17 @@ class asignacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (auth()->user()->role == 'admin') {
+
+            $asignacion = Asignacion::findOrFail($id);
+            $asignacion->user_id = $request->input('user_id');
+            $asignacion->vacunatorio_id = $request->input('vacunatorio_id');
+            $asignacion->save();
+
+            return redirect()->route('asignaciones.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 
     /**
@@ -79,6 +113,14 @@ class asignacionesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (auth()->user()->role == 'admin') {
+            $asignacion = Asignacion::findOrFail($id);
+
+            $asignacion->delete();
+
+            return redirect()->route('asignaciones.index');
+        } else {
+            return redirect('/error-rol');
+        }
     }
 }

@@ -27,6 +27,9 @@
           <thead class="bg-gray-50">
             <tr>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Nombre
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Centro
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -41,14 +44,14 @@
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Estado
               </th>
-              <th scope="col" class="relative px-6 py-3">
-                <span class="sr-only">Editar</span>
-              </th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
             @foreach ($vacunatorios as $vacunatorio)
             <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">{{$vacunatorio->nombre}}</div>
+              </td class="px-6 py-4 whitespace-nowrap">
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900">{{$vacunatorio->centros->nombre}}</div>
               <td class="px-6 py-4 whitespace-nowrap">

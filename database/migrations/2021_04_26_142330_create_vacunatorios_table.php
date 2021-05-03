@@ -15,6 +15,7 @@ class CreateVacunatoriosTable extends Migration
     {
         Schema::create('vacunatorios', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
             $table->unsignedBigInteger('centro_id');
             $table->string('medico');
             $table->string('horario');

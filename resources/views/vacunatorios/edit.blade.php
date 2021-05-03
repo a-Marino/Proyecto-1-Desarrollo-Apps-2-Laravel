@@ -29,10 +29,19 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white sm:p-6">
+                            <label for="nombre" class="block font-medium text-sm text-gray-700">Nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                   value="{{ old('nombre', $vacunatorio->nombre) }}" />
+                            @error('nombre')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="medico" class="block font-medium text-sm text-gray-700">Medico</label>
                             <input type="text" name="medico" id="medico" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('medico', $vacunatorio->medico) }}" />
-                            @error('dosis')
+                            @error('medico')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
@@ -41,7 +50,7 @@
                             <label for="horario" class="block font-medium text-sm text-gray-700">Horario</label>
                             <input type="text" name="horario" id="horario" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('horario', $vacunatorio->horario) }}" />
-                            @error('dosis')
+                            @error('horario')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
@@ -50,7 +59,7 @@
                             <label for="telefono" class="block font-medium text-sm text-gray-700">Teléfono</label>
                             <input type="text" name="telefono" id="telefono" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('telefono', $vacunatorio->telefono) }}" />
-                            @error('dosis')
+                            @error('medico')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
