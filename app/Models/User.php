@@ -65,5 +65,4 @@ class User extends Authenticatable
     public function enfermeros() {
         return $this->hasMany('\App\Models\Enfermero', 'id');
     }
-
 }

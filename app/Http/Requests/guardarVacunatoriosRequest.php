@@ -41,6 +41,10 @@ class guardarVacunatoriosRequest extends FormRequest
                 'telefono' => [
                     'required',
                     'integer',
+                ], 
+                'nombre' => [
+                    'string',
+                    'required',
                 ]
         ];
     }

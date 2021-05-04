@@ -23,6 +23,11 @@
                         </div>
 
                         <div class="mt-4">
+                            <x-jet-label for="nombre" value="{{ __('Nombre') }}" />
+                            <x-jet-input id="nombre" class="block mt-1 w-full" type="string" name="nombre" :value="old('nombre')" required />
+                        </div>
+
+                        <div class="mt-4">
                             <x-jet-label for="medico" value="{{ __('Medico') }}" />
                             <x-jet-input id="medico" class="block mt-1 w-full" type="string" name="medico" :value="old('medico')" required />
                         </div>
