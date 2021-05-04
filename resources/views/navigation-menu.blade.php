@@ -46,7 +46,7 @@
                         <x-jet-nav-link href="{{ route('centros.index') }}" :active="request()->routeIs('centros.*')">
                             <img src="{{ asset('imagenes/centro.svg') }}" class="w-10">
                             @if (auth()->user()->role == 'admin')
-                            {{ __('ABM Usuarios') }}
+                            {{ __('ABM Centros') }}
                             @else
                             {{ __('Lista de Centros') }}
                             @endif

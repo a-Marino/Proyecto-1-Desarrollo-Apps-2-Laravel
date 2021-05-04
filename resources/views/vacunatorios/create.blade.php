@@ -29,7 +29,11 @@
 
                         <div class="mt-4">
                             <x-jet-label for="medico" value="{{ __('Medico') }}" />
-                            <x-jet-input id="medico" class="block mt-1 w-full" type="string" name="medico" :value="old('medico')" required />
+                            <select id="medico"  name="medico" class="block mt-1 w-full border-none">
+                                @foreach($medicos as $medico)
+                                    <option value="{{$medico->nombre}}">{{$medico->nombre}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="mt-4">

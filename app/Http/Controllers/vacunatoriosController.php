@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vacunatorio;
 use App\Models\Centro;
+use App\Models\Medico;
 use App\Http\Requests\guardarVacunatoriosRequest;
 use App\Http\Requests\editarVacunatoriosRequest;
 
@@ -32,8 +33,9 @@ class vacunatoriosController extends Controller
     {
         if (auth()->user()->role == 'admin') {
             $centros = Centro::all();
+            $medicos = Medico::all();
 
-            return view('vacunatorios.create', compact('centros'));
+            return view('vacunatorios.create', compact('centros', 'medicos'));
         } else {
             return redirect('/error-rol');
         }

@@ -15,6 +15,10 @@ class Vacunatorio extends Model
         return $this->belongsTo('\App\Models\Centro', 'centro_id');
     }
 
+    public function medicos(){
+        return $this->belongsTo('\App\Models\Centro', 'medico');
+    }
+
     protected $fillable =[
         'centro_id',
         'nombre',
