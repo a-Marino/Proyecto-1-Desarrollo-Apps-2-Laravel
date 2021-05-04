@@ -26,6 +26,14 @@ class registrarVacunadosController extends Controller
         //
     }
 
+
+    public function buscar(Request $request)
+    {
+        $DNI = $request->input('DNI');
+        // return view('registrarVacunados.index');
+        return "$DNI";
+    }
+
     /**
      * Store a newly created resource in storage.
      *
