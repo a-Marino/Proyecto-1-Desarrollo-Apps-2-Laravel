@@ -43,7 +43,7 @@
                                             <label for="apelnom_v">Nombre y Apellido:</label>
                                             <input type="text" name="apelnom_v" id="apelnom_v"
                                                 class="border border-gray-400 block py-2 px-4 rounded w-full"
-                                                pattern="[A-Za-z0-9ÑñáéíóúÁÉÍÓÚüÜ´ ]+" required disabled value="{{$vacunado}}">
+                                                pattern="[A-Za-z0-9ÑñáéíóúÁÉÍÓÚüÜ´ ]+" required disabled value="{{$vacunado[0]->apelnom}}">
                                         </div>
                                     </div>
 

@@ -12,9 +12,11 @@ class registrarVacunadosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('registrarVacunados.index');
+        $DNI = $request->input('DNI');
+        $vacunado = Vacunado::where('DNI', $DNI)->get();
+        return view('registrarVacunados.index', compact('vacunado'));
     }
 
     /**
@@ -34,7 +36,7 @@ class registrarVacunadosController extends Controller
         // return view('registrarVacunados.index');
         //return "$DNI";
         //$vacunas = Vacuna::all();
-        $vacunado = Vacunado::where('DNI', '=', $DNI)->get();
+        $vacunado = Vacunado::where('DNI', $DNI)->get();
 
         $cant = count($vacunado);
 
