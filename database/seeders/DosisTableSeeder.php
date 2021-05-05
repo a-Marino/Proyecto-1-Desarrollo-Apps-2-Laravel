@@ -15,10 +15,27 @@ class DosisTableSeeder extends Seeder
     public function run()
     {
         $dosis = new Dosis();
-        $dosis->DNI=100;
+        $dosis->DNI=4100100;
         $dosis->Id_vacunatorio=2;
-        $dosis->tipo_vacuna;
-        $dosis->Id_vacunatorio;
+        $dosis->Id_usuario=2;
+        $dosis->tipo_vacuna=1;
+        $dosis->Id_vacunatorio=1;
+        $dosis->save();
+
+        $dosis = new Dosis();
+        $dosis->DNI=4100100;
+        $dosis->Id_vacunatorio=2;
+        $dosis->Id_usuario=3;
+        $dosis->tipo_vacuna=1;
+        $dosis->Id_vacunatorio=1;
+        $dosis->save();
+
+        $dosis = new Dosis();
+        $dosis->DNI=5100100;
+        $dosis->Id_vacunatorio=2;
+        $dosis->Id_usuario=3;
+        $dosis->tipo_vacuna=1;
+        $dosis->Id_vacunatorio=1;
         $dosis->save();
 
     }

@@ -15,7 +15,7 @@ class CreateDosisTable extends Migration
     {
         Schema::create('dosis', function (Blueprint $table) {
             $table->id();
-            $table->integer('DNI')->unique();
+            $table->integer('DNI');
             $table->integer('Id_vacunatorio');
             $table->integer('tipo_vacuna');
             $table->integer('Id_usuario');
