@@ -37,5 +37,6 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::group(['middleware' => 'role:enfermero'], function() {
 		Route::resource('registrarVacunados', \App\Http\Controllers\registrarVacunadosController::class);
+		Route::post('/buscar', [\App\Http\Controllers\registrarVacunadosController::class,"buscar"])->name("registrarVacunados.buscar");
 	});
 });

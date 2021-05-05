@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vacunado;
 use Illuminate\Http\Request;
 
 class registrarVacunadosController extends Controller
@@ -31,8 +32,22 @@ class registrarVacunadosController extends Controller
     {
         $DNI = $request->input('DNI');
         // return view('registrarVacunados.index');
-        return "$DNI";
+        //return "$DNI";
+        //$vacunas = Vacuna::all();
+        $vacunado = Vacunado::where('DNI', '=', $DNI)->get();
+
+        $cant = count($vacunado);
+
+        return view('registrarVacunados.index', compact('vacunado'));
+
+       // return view('registrarVacunados.index', compact(['vacunado'=> $vacunado)]); 
+
+        // if ($vacunado == []) {return 'Error';} else {
+        //  return View('admin.user.edit', compact(['data', 'roles']));
+       // return $cant;
+        //  return view('vacunas.index', compact('vacunado'));
     }
+
 
     /**
      * Store a newly created resource in storage.
