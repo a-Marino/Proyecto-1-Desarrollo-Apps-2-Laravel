@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Dosis;
+use App\Models\Vacuna;
 use App\Models\Vacunado;
+
 use Illuminate\Http\Request;
 
 class registrarVacunadosController extends Controller
@@ -14,9 +16,11 @@ class registrarVacunadosController extends Controller
      */
     public function index(Request $request)
     {
+        $vacuna = Vacuna::all();
         $DNI = $request->input('DNI');
+        $inicio=1;
         $vacunado = Vacunado::where('DNI', $DNI)->get();
-        return view('registrarVacunados.index', compact('vacunado'));
+        return view('registrarVacunados.index', compact('vacunado','vacuna','inicio'));
     }
 
     /**
@@ -32,22 +36,21 @@ class registrarVacunadosController extends Controller
 
     public function buscar(Request $request)
     {
+        $vacuna = Vacuna::all();
+
         $DNI = $request->input('DNI');
-        // return view('registrarVacunados.index');
-        //return "$DNI";
-        //$vacunas = Vacuna::all();
         $vacunado = Vacunado::where('DNI', $DNI)->get();
 
-        $cant = count($vacunado);
+        $cant_vacunados = count($vacunado);
 
-        return view('registrarVacunados.index', compact('vacunado'));
+        if ($cant_vacunados==1){
 
-       // return view('registrarVacunados.index', compact(['vacunado'=> $vacunado)]); 
+            $dosis= Dosis::where('DNI', $DNI)->get();
+            $cant_dosis = count($dosis);
 
-        // if ($vacunado == []) {return 'Error';} else {
-        //  return View('admin.user.edit', compact(['data', 'roles']));
-       // return $cant;
-        //  return view('vacunas.index', compact('vacunado'));
+        }        
+
+        return view('registrarVacunados.index', compact('vacunado','dosis','cant_dosis','vacuna'));
     }
 
 
