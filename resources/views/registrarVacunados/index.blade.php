@@ -32,18 +32,39 @@
                                     </div>
 
                                     <div class="w-1/7 py-7">
-                                        <button name='boton' value='busca_vacunado' formnovalidate
+                                        <button name='boton' value='buscar' formnovalidate
                                             class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
                                             id='btn-registrar-vacunado'>
                                             Buscar
                                         </button>
                                     </div>
+
+
+
+                                    <div class="w-2/5 px-4">
+                                       
+                                        <label for="tipo_vacuna">Vacunatorio:</label>
+                                     
+                                        <select name="Id_vacunatorio" id="Id_vacunatorio"
+                                            class="border border-gray-400 block py-2 px-4 rounded w-full"  @if ($DNI==''){ disabled } @endif required>
+                                            <option value="">Seleccionar </option>
+
+                                            @foreach ($vacunatorios as $vac)
+                                                <option value={{ $vac->id }}> {{ $vac->nombre }} </option>
+                                            @endforeach
+
+                                        </select>
+                                      </div>
+
+
+
+
                                 </div>
 
                                 <div class="flex space-x-4">
                                     <div class="w-10/12">
-                                        <label for="apelnom_v">Nombre y Apellido:</label>
-                                        <input type="text" name="apelnom_v" id="apelnom_v"
+                                        <label for="apelnom">Nombre y Apellido:</label>
+                                        <input type="text" name="apelnom" id="apelnom"
                                             class="border border-gray-400 block py-2 px-4 rounded w-full"
                                             pattern="[A-Za-z0-9ÑñáéíóúÁÉÍÓÚüÜ´ ]+" required @if ($cant_vacunados==1||$DNI==''){ disabled } @endif value="{{ $apelnom }}">
                                     </div>
@@ -99,7 +120,7 @@
                                 <div class="mx-auto">
                                     <div class="w-1/2 mt-2 ml-26  @if ($DNI==''){ invisible } @endif"  >
                                         
-                                        <button name='boton' value='graba_vacunado'
+                                        <button name='boton' value='grabar'
                                             class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
                                             id='btn-registrar-vacunado'>
                                             Registrar Vacunado
@@ -107,8 +128,6 @@
                                         
                                     </div>
                                 </div>
-
-                                <input type="hidden" name="turno" id="turno">
 
                             </div>
 
@@ -182,7 +201,8 @@
                 </div>
 
         </div>
-        <input class="form-control" type="hidden" name="boton" value="otro">
+        <input type="hidden" name="cant_vacunados" value={{ $cant_vacunados }}>
+
         </form>
 
     </div>
