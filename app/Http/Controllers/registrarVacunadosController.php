@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Dosis;
 use App\Models\Vacuna;
 use App\Models\Vacunado;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class registrarVacunadosController extends Controller
 {
@@ -16,41 +18,74 @@ class registrarVacunadosController extends Controller
      */
     public function index(Request $request)
     {
-        $vacuna = Vacuna::all();
+        $vacuna = array();
         $DNI = $request->input('DNI');
-        $inicio=1;
-        $vacunado = Vacunado::where('DNI', $DNI)->get();
-        return view('registrarVacunados.index', compact('vacunado','vacuna','inicio'));
-    }
+        $vacunado = array();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $apelnom = '';
+        $edad = '';
+        $domicilio = '';
+        $grupo_riesgo = '';
+        $tipo_vacuna = '';
+        $dosis = array();
+        $cant_dosis = 0;
+        $cant_vacunados = 1;
+        return view('registrarVacunados.index', compact('DNI', 'apelnom', 'edad', 'domicilio', 'grupo_riesgo', 'tipo_vacuna', 'vacunado', 'dosis', 'cant_dosis', 'cant_vacunados', 'vacuna'));
     }
 
 
     public function buscar(Request $request)
     {
-        $vacuna = Vacuna::all();
+
+        $boton = $request->input('boton');
 
         $DNI = $request->input('DNI');
+
+        $vacunas_aplicadas = DB::table('dosis')
+            ->select(DB::raw('tipo_vacuna,count(*) as aplicada'))
+            ->WHERE('DNI', '=', $DNI)
+            ->groupBy('tipo_vacuna');
+
+        $vacuna = DB::table('vacunas')
+            ->leftJoinSub($vacunas_aplicadas, 'vac_aplicadas', function ($join) {
+                $join->on('vacunas.id', '=', 'vac_aplicadas.tipo_vacuna');
+            })
+            ->whereRaw('aplicada IS NULL or dosis>aplicada')
+            ->get();
+
+
         $vacunado = Vacunado::where('DNI', $DNI)->get();
 
         $cant_vacunados = count($vacunado);
 
-        if ($cant_vacunados==1){
+        if ($cant_vacunados == 1) {
 
-            $dosis= Dosis::where('DNI', $DNI)->get();
+            $apelnom = $vacunado[0]->apelnom;
+            $edad = $vacunado[0]->edad;
+            $domicilio = $vacunado[0]->domicilio;
+            $grupo_riesgo = $vacunado[0]->grupo_riesgo;
+            $tipo_vacuna = $vacunado[0]->tipo_vacuna;
+
+           // $dosis = Dosis::where('DNI', $DNI)->get();
+
+           $dosis = DB::table('dosis')
+           ->join('vacunas','dosis.tipo_vacuna','=','vacunas.id')
+           ->join('enfermeros','dosis.Id_usuario','=','enfermeros.user_id')
+           ->where('DNI', $DNI)
+           ->get();
+
             $cant_dosis = count($dosis);
+        } else {
+            $apelnom = '';
+            $edad = '';
+            $domicilio = '';
+            $grupo_riesgo = '';
+            $tipo_vacuna = '';
+            $dosis = array();
+            $cant_dosis = 0;
+        }
 
-        }        
-
-        return view('registrarVacunados.index', compact('vacunado','dosis','cant_dosis','vacuna'));
+        return view('registrarVacunados.index', compact('DNI', 'apelnom', 'edad', 'domicilio', 'grupo_riesgo', 'tipo_vacuna', 'vacunado', 'dosis', 'cant_dosis', 'cant_vacunados', 'vacuna','boton'));
     }
 
 
@@ -62,51 +97,8 @@ class registrarVacunadosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'Grabar';
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
