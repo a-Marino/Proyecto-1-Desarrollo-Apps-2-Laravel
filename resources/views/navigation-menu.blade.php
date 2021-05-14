@@ -188,30 +188,57 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @if (auth()->user()->role == 'admin')
+            @if (auth()->user()->role == 'admin' OR auth()->user()->role == 'gestion')
                 <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-responsive-nav-link href="{{ route('usuarios.index') }}" :active="request()->routeIs('usuarios.*')">
-                        <img src="{{ asset('imagenes/usuario.svg') }}" class="w-10">{{ __('ABM Usuarios') }}
+                        <img src="{{ asset('imagenes/usuario.svg') }}" class="w-10">
+                        @if (auth()->user()->role == 'admin')
+                        {{ __('ABM Usuarios') }}
+                        @else
+                        {{ __('Lista de Usuarios') }}
+                        @endif
                     </x-jet-responsive-nav-link>
                 </div>
                 <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-responsive-nav-link href="{{ route('vacunas.index') }}" :active="request()->routeIs('vacunas.*')">
-                        <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">{{ __('ABM Vacunas') }}
+                        <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">
+                        @if (auth()->user()->role == 'admin')
+                        {{ __('ABM Vacunas') }}
+                        @else
+                        {{ __('Lista de Vacunas') }}
+                        @endif
                     </x-jet-responsive-nav-link>
                 </div>
                 <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-responsive-nav-link href="{{ route('vacunatorios.index') }}" :active="request()->routeIs('vacunatorios.*')">
-                        <img src="{{ asset('imagenes/vacunatorio.svg') }}" class="w-10">{{ __('ABM Vacunatorios') }}
+                        <img src="{{ asset('imagenes/vacunatorio.svg') }}" class="w-10">
+                        @if (auth()->user()->role == 'admin')
+                        {{ __('ABM Vacunatorios') }}
+                        @else
+                        {{ __('Lista de Vacunatorios') }}
+                        @endif
                     </x-jet-responsive-nav-link>
                 </div>
                 <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-responsive-nav-link href="{{ route('centros.index') }}" :active="request()->routeIs('centros.*')">
-                        <img src="{{ asset('imagenes/centro.svg') }}" class="w-10">{{ __('ABM Centros') }}
+                        <img src="{{ asset('imagenes/centro.svg') }}" class="w-10">
+                        @if (auth()->user()->role == 'admin')
+                        {{ __('ABM Centros') }}
+                        @else
+                        {{ __('Lista de Centros') }}
+                        @endif
                     </x-jet-responsive-nav-link>
                 </div>
                 <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-responsive-nav-link href="{{ route('asignaciones.index') }}" :active="request()->routeIs('asignaciones.*')">
                         <img src="{{ asset('imagenes/asignaciones.svg') }}" class="w-10">{{ __('Asignaciones') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+            @endif
+            @if (auth()->user()->role == 'enfermero')
+                <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-responsive-nav-link href="{{ route('registrarVacunados.index') }}" :active="request()->routeIs('registrarVacunados.*')">
+                        <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">{{ __('Registrar Vacunados') }}
                     </x-jet-responsive-nav-link>
                 </div>
             @endif
