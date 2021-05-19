@@ -69,8 +69,9 @@ class vacunatoriosController extends Controller
         if (auth()->user()->role == 'admin') {
             $vacunatorio = Vacunatorio::findOrFail($id);
             $centros= Centro::all();
+            $medicos= Medico::all();
 
-            return view('vacunatorios.edit', compact('vacunatorio','centros'));
+            return view('vacunatorios.edit', compact('vacunatorio','centros', 'medicos'));
         } else {
             return redirect('/error-rol');
         }

@@ -39,8 +39,9 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="medico" class="block font-medium text-sm text-gray-700">Medico</label>
-                            <input type="text" name="medico" id="medico" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('medico', $vacunatorio->medico) }}" />
+                            @foreach($medicos as $medico)
+                                <option value="{{$medico->nombre}}">{{$medico->nombre}}</option>
+                            @endforeach
                             @error('medico')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
