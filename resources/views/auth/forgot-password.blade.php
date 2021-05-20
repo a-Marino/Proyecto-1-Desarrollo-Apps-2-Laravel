@@ -25,7 +25,7 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-jet-button>
+                <x-jet-button class='bg-blue-500 hover:bg-blue-700'>
                     {{ __('Enviar link de recuperacion') }}
                 </x-jet-button>
             </div>

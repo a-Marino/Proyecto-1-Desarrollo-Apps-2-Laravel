@@ -14,7 +14,7 @@
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="apelnom" class="block font-medium text-sm text-gray-700">Nombre y Apellido</label>
-                            <input type="text" name="apelnom" id="apelnom" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            <x-jet-input type="text" name="apelnom" id="apelnom" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('apelnom', $user->apelnom) }}" />
                             @error('apelnom')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
@@ -23,7 +23,7 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="DNI" class="block font-medium text-sm text-gray-700">DNI</label>
-                            <input type="number" name="DNI" id="DNI" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            <x-jet-input type="number" name="DNI" id="DNI" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('DNI', $user->DNI) }}" />
                             @error('DNI')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
@@ -32,7 +32,7 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="email" class="block font-medium text-sm text-gray-700">Email</label>
-                            <input type="email" name="email" id="email" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            <x-jet-input type="email" name="email" id="email" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('email', $user->email) }}" />
                             @error('email')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
@@ -42,7 +42,7 @@
                         @if ($user->role == 'enfermero')
                             <div class="px-4 py-5 bg-white sm:p-6" id="div_rup">
                                 <label for="RUP" class="block font-medium text-sm text-gray-700">RUP</label>
-                                <input type="number" name="RUP" id="RUP" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                <x-jet-input type="number" name="RUP" id="RUP" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('RUP', $user->RUP) }}" />
                                 @error('RUP')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
@@ -51,7 +51,7 @@
 
                             <div class="px-4 py-5 bg-white sm:p-6" id="div_telefono">
                                 <label for="telefono" class="block font-medium text-sm text-gray-700">Telefono</label>
-                                <input type="number" name="telefono" id="telefono" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                <x-jet-input type="number" name="telefono" id="telefono" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('telefono', $user->telefono) }}" />
                                 @error('telefono')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                            <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                            <button class="inline-flex items-center px-4 py-2  border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest bg-blue-500 hover:bg-blue-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                 Editar
                             </button>
                         </div>

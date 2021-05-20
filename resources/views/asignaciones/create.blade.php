@@ -13,7 +13,7 @@
                     <div class="shadow overflow-hidden sm:rounded-md p-10">
                         <div class="mt-4">
                             <x-jet-label for="user_id" value="{{ __('Enfermero') }}" />
-                            <select id="user_id"  name="user_id" class="block mt-1 w-full border-none">
+                            <select id="user_id"  name="user_id" class="block mt-1 w-full border rounded-md shadow border-gray-300">
                                 @foreach($users as $user)
                                     @if ($user->role == 'enfermero')
                                         <option value="{{$user->id}}">{{$user->apelnom}}</option>
@@ -24,7 +24,7 @@
 
                         <div class="mt-4">
                             <x-jet-label for="vacunatorio_id" value="{{ __('Vacunatorio') }}" />
-                            <select id="vacunatorio_id"  name="vacunatorio_id" class="block mt-1 w-full border-none">
+                            <select id="vacunatorio_id"  name="vacunatorio_id" class="block mt-1 w-full border rounded-md border-gray-300 shadow">
                                 @foreach($vacunatorios as $vacunatorio)
                                     @if ($vacunatorio->disable == false)
                                         <option value="{{$vacunatorio->id}}">{{$vacunatorio->nombre}}</option>
@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-100 text-right sm:px-6">
-                            <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                            <button class="inline-flex items-center px-4 py-2 = border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest bg-blue-500 hover:bg-blue-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                 Crear 
                             </button>
                         </div>
