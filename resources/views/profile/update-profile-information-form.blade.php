@@ -79,8 +79,8 @@
             {{ __('Guardado.') }}
         </x-jet-action-message>
 
-        <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Guardar') }}
-        </x-jet-button>
+        <button class="inline-flex items-center px-4 py-2  border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest bg-blue-500 hover:bg-blue-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+            Guardar
+        </button>
     </x-slot>
 </x-jet-form-section>

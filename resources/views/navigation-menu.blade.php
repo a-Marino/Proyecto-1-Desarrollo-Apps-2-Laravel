@@ -1,7 +1,7 @@
 <nav x-data="{ open: false }" class="fondo-nav border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-20">
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
@@ -16,9 +16,9 @@
                         <x-jet-nav-link href="{{ route('usuarios.index') }}" :active="request()->routeIs('usuarios.*')">
                             <img src="{{ asset('imagenes/usuario.svg') }}" class="w-10">
                             @if (auth()->user()->role == 'admin')
-                            {{ __('ABM Usuarios') }}
+                            <span class="text-white font-bold ml-1">ABM Usuarios</span>
                             @else
-                            {{ __('Lista de Usuarios') }}
+                            <span class="text-white font-bold ml-1">Lista de Usuarios</span>
                             @endif
                         </x-jet-nav-link>
                     </div>
@@ -26,9 +26,9 @@
                         <x-jet-nav-link href="{{ route('vacunas.index') }}" :active="request()->routeIs('vacunas.*')">
                             <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">
                             @if (auth()->user()->role == 'admin')
-                            {{ __('ABM Vacunas') }}
+                            <span class="text-white font-bold ml-1">ABM Vacunas</span>
                             @else
-                            {{ __('Lista de Vacunas') }}
+                            <span class="text-white font-bold ml-1">Lista de Vacunas</span>
                             @endif
                         </x-jet-nav-link>
                     </div>
@@ -36,9 +36,9 @@
                         <x-jet-nav-link href="{{ route('vacunatorios.index') }}" :active="request()->routeIs('vacunatorios.*')">
                             <img src="{{ asset('imagenes/vacunatorio.svg') }}" class="w-10">
                             @if (auth()->user()->role == 'admin')
-                            {{ __('ABM Vacunatorios') }}
+                            <span class="text-white font-bold ml-1">ABM Vacunatorios</span>
                             @else
-                            {{ __('Lista de Vacunatorios') }}
+                            <span class="text-white font-bold ml-1">Lista de Vacunatorios</span>
                             @endif
                         </x-jet-nav-link>
                     </div>
@@ -46,15 +46,16 @@
                         <x-jet-nav-link href="{{ route('centros.index') }}" :active="request()->routeIs('centros.*')">
                             <img src="{{ asset('imagenes/centro.svg') }}" class="w-10">
                             @if (auth()->user()->role == 'admin')
-                            {{ __('ABM Centros') }}
+                            <span class="text-white font-bold ml-1">ABM Centros</span>
                             @else
-                            {{ __('Lista de Centros') }}
+                            <span class="text-white font-bold ml-1">Lista de Centros</span>
                             @endif
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('asignaciones.index') }}" :active="request()->routeIs('asignaciones.*')">
-                            <img src="{{ asset('imagenes/asignaciones.svg') }}" class="w-10">{{ __('Asignaciones') }}
+                            <img src="{{ asset('imagenes/asignaciones.svg') }}" class="w-10">
+                            <span class="text-white font-bold ml-1">Asignaciones</span>
                         </x-jet-nav-link>
                     </div>
                 @endif
@@ -62,7 +63,8 @@
                 @if (auth()->user()->role == 'enfermero')
                     <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('registrarVacunados.index') }}" :active="request()->routeIs('registrarVacunados.*')">
-                            <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">{{ __('Registrar Vacunados') }}
+                            <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">
+                            <span class="text-white font-bold ml-1">Registrar Vacunado</span>
                         </x-jet-nav-link>
                     </div>
                 @endif
@@ -165,7 +167,7 @@
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                          onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('Cerrar Sesion') }}
+                                    <span class="text-red-500 font-semibold">Cerrar Sesion</span>
                                 </x-jet-dropdown-link>
                             </form>
                         </x-slot>
@@ -193,9 +195,9 @@
                     <x-jet-responsive-nav-link href="{{ route('usuarios.index') }}" :active="request()->routeIs('usuarios.*')">
                         <img src="{{ asset('imagenes/usuario.svg') }}" class="w-10">
                         @if (auth()->user()->role == 'admin')
-                        {{ __('ABM Usuarios') }}
+                        <span class="text-black font-bold ml-1 hover:text-black">ABM Usuarios</span>
                         @else
-                        {{ __('Lista de Usuarios') }}
+                        <span class="text-black font-bold ml-1 hover:text-black">Lista de Usuarios</span>
                         @endif
                     </x-jet-responsive-nav-link>
                 </div>
@@ -203,9 +205,9 @@
                     <x-jet-responsive-nav-link href="{{ route('vacunas.index') }}" :active="request()->routeIs('vacunas.*')">
                         <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">
                         @if (auth()->user()->role == 'admin')
-                        {{ __('ABM Vacunas') }}
+                        <span class="text-black font-bold ml-1 hover:text-black">ABM Vacunas</span>
                         @else
-                        {{ __('Lista de Vacunas') }}
+                        <span class="text-black font-bold ml-1 hover:text-black">Lista de Vacunas</span>
                         @endif
                     </x-jet-responsive-nav-link>
                 </div>
@@ -213,9 +215,9 @@
                     <x-jet-responsive-nav-link href="{{ route('vacunatorios.index') }}" :active="request()->routeIs('vacunatorios.*')">
                         <img src="{{ asset('imagenes/vacunatorio.svg') }}" class="w-10">
                         @if (auth()->user()->role == 'admin')
-                        {{ __('ABM Vacunatorios') }}
+                        <span class="text-black font-bold ml-1 hover:text-black">ABM Vacunatorios</span>
                         @else
-                        {{ __('Lista de Vacunatorios') }}
+                        <span class="text-black font-bold ml-1 hover:text-black">Lista de Vacunatorios</span>
                         @endif
                     </x-jet-responsive-nav-link>
                 </div>
@@ -223,22 +225,24 @@
                     <x-jet-responsive-nav-link href="{{ route('centros.index') }}" :active="request()->routeIs('centros.*')">
                         <img src="{{ asset('imagenes/centro.svg') }}" class="w-10">
                         @if (auth()->user()->role == 'admin')
-                        {{ __('ABM Centros') }}
+                        <span class="text-black font-bold ml-1 hover:text-black">ABM Centros</span>
                         @else
-                        {{ __('Lista de Centros') }}
+                        <span class="text-black font-bold ml-1 hover:text-black">Lista de Centros</span>
                         @endif
                     </x-jet-responsive-nav-link>
                 </div>
                 <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-responsive-nav-link href="{{ route('asignaciones.index') }}" :active="request()->routeIs('asignaciones.*')">
-                        <img src="{{ asset('imagenes/asignaciones.svg') }}" class="w-10">{{ __('Asignaciones') }}
+                        <img src="{{ asset('imagenes/asignaciones.svg') }}" class="w-10">
+                        <span class="text-black font-bold ml-1 hover:text-black">Asignaciones</span>
                     </x-jet-responsive-nav-link>
                 </div>
             @endif
             @if (auth()->user()->role == 'enfermero')
                 <div class="space-x-4 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-responsive-nav-link href="{{ route('registrarVacunados.index') }}" :active="request()->routeIs('registrarVacunados.*')">
-                        <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">{{ __('Registrar Vacunados') }}
+                        <img src="{{ asset('imagenes/vacuna.svg') }}" class="w-10">
+                        <span class="text-black font-bold ml-1 hover:text-black">Registrar Vacunados</span>
                     </x-jet-responsive-nav-link>
                 </div>
             @endif
@@ -255,14 +259,14 @@
 
                 <div>
                     <div class="font-medium text-base text-gray-800">{{ Auth::user()->apelnom }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                    <div class="font-medium text-sm text-white">{{ Auth::user()->email }}</div>
                 </div>
             </div>
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Perfil') }}
+                    <span class="text-black">Perfil</span>
                 </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -278,7 +282,7 @@
                     <x-jet-responsive-nav-link href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                     this.closest('form').submit();">
-                        {{ __('Cerrar Sesion') }}
+                        <span class="text-red-500 font-semibold">Cerrar Sesion</span>
                     </x-jet-responsive-nav-link>
                 </form>
 
