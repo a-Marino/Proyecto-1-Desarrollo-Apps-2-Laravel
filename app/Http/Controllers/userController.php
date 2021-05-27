@@ -41,7 +41,7 @@ class userController extends Controller
         ]);
 
         $user = new User();
-        $user->
+        $user->apelnom = $request->input('apelnom');
         $user->DNI = $request->input('DNI');
         $user->email = $request->input('email');
         $user->role = $request->input('role');
