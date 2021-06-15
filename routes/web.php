@@ -33,6 +33,14 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::resource('centros', \App\Http\Controllers\centrosController::class);
 		Route::resource('vacunatorios', \App\Http\Controllers\vacunatoriosController::class);
 		Route::resource('asignaciones', \App\Http\Controllers\asignacionesController::class);
+
+		Route::get('/buscarcentro', [\App\Http\Controllers\centrosController::class,"buscarCentro"])->name("centros.buscarCentro");
+		Route::get('/buscarVacunatorio', [\App\Http\Controllers\vacunatoriosController::class,"buscarVacunatorio"])->name("vacunatorios.buscarVacunatorio");
+	
+		Route::get('/vercentros/{user}', [\App\Http\Controllers\centrosController::class,"vercentros"])->name("centros.vercentros");
+		Route::get('/vervacunados/{vacunatorio}', [\App\Http\Controllers\vacunatoriosController::class,"vervacunados"])->name("vacunatorios.vervacunados");
+
+
 	});
 
 	Route::group(['middleware' => 'role:enfermero'], function() {

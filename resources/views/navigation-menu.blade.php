@@ -58,6 +58,25 @@
                             <span class="text-white font-bold ml-1">Asignaciones</span>
                         </x-jet-nav-link>
                     </div>
+                   
+                   
+                    @if (auth()->user()->role == 'gestion')
+                    <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('vacunatorios.buscarVacunatorio') }}" :active="request()->routeIs('vacunatorios.*')">
+                            <img src="{{ asset('imagenes/lista.png') }}" class="w-10">
+                            <span class="text-white font-bold ml-1">Aplicaciones por Vacunatorio</span>
+                        </x-jet-nav-link>
+                    </div>
+                    
+                    <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('centros.buscarCentro') }}" :active="request()->routeIs('centros.*')">
+                            <img src="{{ asset('imagenes/lista.png') }}" class="w-10">
+                            <span class="text-white font-bold ml-1">Centros por Enfermero</span>
+                        </x-jet-nav-link>
+                    </div>
+                    @endif
+
+
                 @endif
 
                 @if (auth()->user()->role == 'enfermero')
