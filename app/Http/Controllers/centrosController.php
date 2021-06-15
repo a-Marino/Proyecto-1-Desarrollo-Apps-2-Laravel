@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Centro;
+use App\Models\Enfermero;
+use App\Models\Asignacion;
+use App\Models\User;
 use App\Http\Requests\guardarCentrosRequest;
 use App\Http\Requests\editarCentrosRequest;
+
+
 
 
 class centrosController extends Controller
@@ -106,4 +113,33 @@ class centrosController extends Controller
             return redirect('/error-rol');
         }
     }
+
+
+    public function buscarCentro()
+    {
+
+        $users = User::where('role', 'enfermero')->get();
+        $enfermeros = Enfermero::all();
+
+    	return view('centros.listaCentros', compact('users', 'enfermeros'));
+
+    }
+
+
+    public function vercentros($id)
+    {
+
+        $user = User::findOrFail($id);
+
+        $centros = DB::table('asignaciones')
+        ->join('vacunatorios', 'asignaciones.vacunatorio_id', '=', 'vacunatorios.id')
+        ->join('centros', 'vacunatorios.centro_id', '=', 'centros.id')
+        ->where('asignaciones.user_id', $id)
+        ->get();
+
+        return view('centros.vercentro',compact('centros','user'));
+
+    }
+
+
 }
