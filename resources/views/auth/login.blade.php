@@ -1,17 +1,27 @@
 <x-guest-layout>
     <x-jet-authentication-card>
+        <div class="fixed top-0 left-0 p-5">
+            <h1 class="text-2xl"> LOGIN DATA </h1>
+            <h2 class="text-xl">ADMIN</h2>
+            <p>DNI: 100 - PASSWORD: 100</p>
+            <h2 class="text-xl"> ENFERMERO </h2>
+            <p>DNI: 101 - PASSWORD: 101 </p>
+            <h3 class="text-xl"> GESTION </h3>
+            <p>DNI: 103 - PASSWORD: 103</p>
+        </div>
+        
         <x-slot name="logo">
             <img src="{{ asset('imagenes/vacunate-logo-lg-n.svg') }}" alt="" class="w-56">
         </x-slot>
-
+        
         <x-jet-validation-errors class="mb-4" />
-
+        
         @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
+        <div class="mb-4 font-medium text-sm text-green-600">
+            {{ session('status') }}
+        </div>
         @endif
-
+        
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
